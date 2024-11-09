@@ -1,0 +1,22 @@
+# Maintainer: Homalozoa <nx.tardis@gmail.com>
+
+pkgname=update-dns
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="A script to update GoDaddy DNS records with local IPv6 address"
+arch=('any')
+url="https://example.com"
+license=('MIT')
+depends=('curl')
+source=('update_dns.sh'
+        'update_dns.service'
+        'update_dns.timer')
+sha256sums=('SKIP'
+            'SKIP'
+            'SKIP')
+
+package() {
+    install -Dm755 "$srcdir/update_dns.sh" "$pkgdir/usr/local/bin/update_dns.sh"
+    install -Dm644 "$srcdir/update_dns.service" "$pkgdir/etc/systemd/system/update_dns.service"
+    install -Dm644 "$srcdir/update_dns.timer" "$pkgdir/etc/systemd/system/update_dns.timer"
+}

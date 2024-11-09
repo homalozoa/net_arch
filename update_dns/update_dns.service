@@ -1,0 +1,6 @@
+[Unit]
+Description=Update GoDaddy DNS Record
+
+[Service]
+EnvironmentFile=/etc/systemd/system/update_dns.env
+ExecStart=/usr/local/bin/update_dns.sh

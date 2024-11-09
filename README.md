@@ -2,7 +2,7 @@
 
 ## Introduction
 
-It is a toolset I create for very personal things. All tools are designed as AUR packages, and available to install with `makepkg`.
+It is a toolset for very personal things. All tools are designed as AUR packages, and available to install with `makepkg`.
 
 ## Tool List
 

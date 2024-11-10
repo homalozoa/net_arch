@@ -1,0 +1,6 @@
+[Unit]
+Description=Update V2Ray Subscription
+
+[Service]
+EnvironmentFile=/etc/systemd/system/update_v2ray.env
+ExecStart=/usr/local/bin/update_v2ray.sh

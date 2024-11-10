@@ -1,0 +1,26 @@
+# Maintainer: Homalozoa <nx.tardis@gmail.com>
+pkgname=update-v2ray
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="A script to update V2Ray subscription with local configuration"
+arch=('any')
+url="https://github.com/homalozoa/net_arch"
+license=('Apache')
+depends=('curl' 'jq')
+install='update-v2ray.install'
+source=('update_v2ray.sh'
+        'update_v2ray.service'
+        'update_v2ray.timer'
+        'update_v2ray.env')
+sha256sums=('943041d5e56403e5be991f03ca5a385207cb47be9067ccdf7627264ef69818e8'
+            '79cd916cf7e57696a3255fae0a5b293ac15dec97182b056a9a07b7ed182aabab'
+            'c3756512305b9e4149aa21213a87b5e363df020b33a8fa23f094d9efd69930f2'
+            'SKIP')
+backup=('etc/systemd/system/update_v2ray.env')
+
+package() {
+    install -Dm755 "$srcdir/update_v2ray.sh" "$pkgdir/usr/local/bin/update_v2ray.sh"
+    install -Dm644 "$srcdir/update_v2ray.service" "$pkgdir/etc/systemd/system/update_v2ray.service"
+    install -Dm644 "$srcdir/update_v2ray.timer" "$pkgdir/etc/systemd/system/update_v2ray.timer"
+    install -Dm644 "$srcdir/update_v2ray.env" "$pkgdir/etc/systemd/system/update_v2ray.env"
+}

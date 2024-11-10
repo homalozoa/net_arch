@@ -1,0 +1,15 @@
+post_install() {
+    echo "================================================================"
+    echo "Please configure your V2Ray subscription URL in:"
+    echo "  /etc/systemd/system/update_v2ray.env"
+    echo "by setting the SUBSCRIPTION_URL variable."
+    echo "After configuring the subscription URL, start and enable the timer with:"
+    echo "  sudo systemctl daemon-reload"
+    echo "  sudo systemctl start update_v2ray.timer"
+    echo "  sudo systemctl enable update_v2ray.timer"
+    echo "================================================================"
+}
+
+post_upgrade() {
+    post_install
+}

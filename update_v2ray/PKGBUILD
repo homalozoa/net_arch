@@ -1,7 +1,7 @@
 # Maintainer: Homalozoa <nx.tardis@gmail.com>
 pkgname=update-v2ray
 pkgver=1.0.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A script to update V2Ray subscription with local configuration"
 arch=('any')
 url="https://github.com/homalozoa/net_arch"
@@ -12,7 +12,7 @@ source=('update_v2ray.sh'
         'update_v2ray.service'
         'update_v2ray.timer'
         'update_v2ray.env')
-sha256sums=('943041d5e56403e5be991f03ca5a385207cb47be9067ccdf7627264ef69818e8'
+sha256sums=('c2e9b118875c5a8273ae58d4f789d4f19620cc5ac24b686c4c5141fc6360c5d7'
             '79cd916cf7e57696a3255fae0a5b293ac15dec97182b056a9a07b7ed182aabab'
             'c3756512305b9e4149aa21213a87b5e363df020b33a8fa23f094d9efd69930f2'
             'SKIP')

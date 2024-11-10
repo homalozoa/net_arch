@@ -2,8 +2,8 @@
 
 pkgname=update-dns
 pkgver=1.0.0
-pkgrel=1
-pkgdesc="A script to update GoDaddy DNS records with local IPv6 address"
+pkgrel=2
+pkgdesc="A script to update namecheap DNS records with local IPv6 address"
 arch=('any')
 url="https://github.com/homalozoa/net_arch"
 license=('Apache')
@@ -13,7 +13,7 @@ source=('update_dns.sh'
         'update_dns.service'
         'update_dns.timer'
         'update_dns.env')
-sha256sums=('6b1e210bbbb081b96cc1c78d3da72445c93486a08d1260208f8c7401f81c63a7'
+sha256sums=('005a7ada9c8984067d788faffb89127fa4f79f83e5b5c6ca7fa803d12a037783'
             '4068a91de7cbbab62483c29aeeb185c040ed954629e5a593927d5b0b9e7b700b'
             '7d124eb4ebdbdc36b162ab70285b335ef7da2568c5b04d821c3964b9ea2308e6'
             'SKIP')

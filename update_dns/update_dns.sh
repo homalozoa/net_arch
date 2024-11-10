@@ -1,19 +1,38 @@
 #!/bin/bash
 
-# GoDaddy API credentials from environment variables
-API_KEY="$GODADDY_API_KEY"
-API_SECRET="$GODADDY_API_SECRET"
+# Namecheap API credentials from environment variables
+API_KEY="$NAMECHEAP_API_KEY"
+API_USER="$NAMECHEAP_USER"
+CLIENT_IP="$CLIENT_IP"  # Your whitelisted IP address
 DOMAIN="$DOMAIN_NAME"
-RECORD_TYPE="AAAA"
-RECORD_NAME="@"
+HOST="@"  # @ for root domain or your subdomain
 
-# 获取本地IPv6地址
+# Get local IPv6 address
 IPV6_ADDRESS=$(ip -6 addr show scope global | grep inet6 | awk '{print $2}' | cut -d/ -f1 | head -n 1)
 
-# 更新DNS记录
-curl -X PUT "https://api.godaddy.com/v1/domains/$DOMAIN/records/$RECORD_TYPE/$RECORD_NAME" \
--H "Authorization: sso-key $API_KEY:$API_SECRET" \
--H "Content-Type: application/json" \
--d "[{\"data\": \"$IPV6_ADDRESS\"}]"
+# Parse domain into SLD and TLD
+SLD=$(echo "$DOMAIN" | rev | cut -d. -f2 | rev)
+TLD=$(echo "$DOMAIN" | rev | cut -d. -f1 | rev)
 
-echo "DNS record updated to $IPV6_ADDRESS"
+# Update DNS record using Namecheap API
+RESPONSE=$(curl -s "https://api.namecheap.com/xml.response" \
+    --get \
+    --data-urlencode "ApiUser=$API_USER" \
+    --data-urlencode "ApiKey=$API_KEY" \
+    --data-urlencode "UserName=$API_USER" \
+    --data-urlencode "ClientIp=$CLIENT_IP" \
+    --data-urlencode "Command=namecheap.domains.dns.setHosts" \
+    --data-urlencode "SLD=$SLD" \
+    --data-urlencode "TLD=$TLD" \
+    --data-urlencode "HostName1=$HOST" \
+    --data-urlencode "RecordType1=AAAA" \
+    --data-urlencode "Address1=$IPV6_ADDRESS" \
+    --data-urlencode "TTL1=1800")
+
+if echo "$RESPONSE" | grep -q '<ApiResponse Status="OK"'; then
+    echo "DNS record updated to $IPV6_ADDRESS"
+else
+    echo "Failed to update DNS record"
+    echo "$RESPONSE"
+    exit 1
+fi

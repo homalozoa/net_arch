@@ -8,15 +8,20 @@ arch=('any')
 url="https://github.com/homalozoa/net_arch"
 license=('Apache')
 depends=('curl')
+install='update-dns.install'
 source=('update_dns.sh'
         'update_dns.service'
-        'update_dns.timer')
+        'update_dns.timer'
+        'update_dns.env')
 sha256sums=('6b1e210bbbb081b96cc1c78d3da72445c93486a08d1260208f8c7401f81c63a7'
             '4068a91de7cbbab62483c29aeeb185c040ed954629e5a593927d5b0b9e7b700b'
-            '7d124eb4ebdbdc36b162ab70285b335ef7da2568c5b04d821c3964b9ea2308e6')
+            '7d124eb4ebdbdc36b162ab70285b335ef7da2568c5b04d821c3964b9ea2308e6'
+            'SKIP')
+backup=('etc/systemd/system/update_dns.env')
 
 package() {
     install -Dm755 "$srcdir/update_dns.sh" "$pkgdir/usr/local/bin/update_dns.sh"
     install -Dm644 "$srcdir/update_dns.service" "$pkgdir/etc/systemd/system/update_dns.service"
     install -Dm644 "$srcdir/update_dns.timer" "$pkgdir/etc/systemd/system/update_dns.timer"
+    install -Dm644 "$srcdir/update_dns.env" "$pkgdir/etc/systemd/system/update_dns.env"
 }

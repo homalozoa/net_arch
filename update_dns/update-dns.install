@@ -1,0 +1,14 @@
+post_install() {
+    echo "================================================================"
+    echo "Please configure your GoDaddy API and Domain Name in:"
+    echo "  /etc/systemd/system/update_dns.env"
+    echo "After configuring the subscription URL, start and enable the timer with:"
+    echo "  sudo systemctl daemon-reload"
+    echo "  sudo systemctl start update_dns.timer"
+    echo "  sudo systemctl enable update_dns.timer"
+    echo "================================================================"
+}
+
+post_upgrade() {
+    post_install
+}

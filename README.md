@@ -6,5 +6,5 @@ It is a toolset for very personal things. All tools are designed as AUR packages
 
 ## Tool List
 
-1. update-dns: It is a scripts package to update DNS configuration with API of GoDaddy. The script will check the change of local IPv6 address, and update the address with API every 12 hours.
+1. update-dns: It is a scripts package to update AAAA DNS configuration with API of NameCheap. The script will check the varying of local IPv6 address every FIVE minutes, and update the AAAA DNS.
 2. update-v2ray: It is a scripts package to update V2Ray subscription every day.

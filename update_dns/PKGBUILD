@@ -1,8 +1,8 @@
 # Maintainer: Homalozoa <nx.tardis@gmail.com>
 
 pkgname=update-dns
-pkgver=1.0.0
-pkgrel=2
+pkgver=1.1.0
+pkgrel=1
 pkgdesc="A script to update namecheap DNS records with local IPv6 address"
 arch=('any')
 url="https://github.com/homalozoa/net_arch"
@@ -13,15 +13,15 @@ source=('update_dns.sh'
         'update_dns.service'
         'update_dns.timer'
         'update_dns.env')
-sha256sums=('005a7ada9c8984067d788faffb89127fa4f79f83e5b5c6ca7fa803d12a037783'
-            '4068a91de7cbbab62483c29aeeb185c040ed954629e5a593927d5b0b9e7b700b'
-            '7d124eb4ebdbdc36b162ab70285b335ef7da2568c5b04d821c3964b9ea2308e6'
+sha256sums=('305ef4260001b7cecc405234fc0bdd18b007a773158c26f15c6d6961cb719c09'
+            'bee10f22b4be45d8b865644fac128efa5dfcf59497c04843ee13466cbf1774cf'
+            '79a9f1990cb41e3f2e47df17f38621d2178b210adc774b309a1cad4e3dbad312'
             'SKIP')
-backup=('etc/systemd/system/update_dns.env')
+backup=('etc/systemd/update_dns.env')
 
 package() {
     install -Dm755 "$srcdir/update_dns.sh" "$pkgdir/usr/local/bin/update_dns.sh"
     install -Dm644 "$srcdir/update_dns.service" "$pkgdir/etc/systemd/system/update_dns.service"
     install -Dm644 "$srcdir/update_dns.timer" "$pkgdir/etc/systemd/system/update_dns.timer"
-    install -Dm644 "$srcdir/update_dns.env" "$pkgdir/etc/systemd/system/update_dns.env"
+    install -Dm644 "$srcdir/update_dns.env" "$pkgdir/etc/systemd/update_dns.env"
 }

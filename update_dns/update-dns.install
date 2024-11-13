@@ -1,10 +1,6 @@
 post_install() {
     echo "================================================================"
-    echo "Please start and enable the sysctl ipv6 flush with:"
-    echo "  sudo systemctl start sysctl-load-ipv6.service"
-    echo "  sudo systemctl enable sysctl-load-ipv6.service"
-    echo "----------------------------------------------------------------"
-    echo "Also, please configure your namecheap API and Domain Name in:"
+    echo "Please configure your namecheap API and Domain Name in:"
     echo "  /etc/systemd/system/update_dns.env"
     echo "After configuring the subscription URL, start and enable the timer with:"
     echo "  sudo systemctl daemon-reload"
